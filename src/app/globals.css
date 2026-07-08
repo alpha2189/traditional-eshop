@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Τραντισιοναλ — Design tokens
+   Παλέτα «χαρτί & ύφασμα»: ζεστό λευκό, μπεζ λινό, μαύρο κάρβουνο
+   ============================================================ */
+:root {
+  --color-paper: 253 252 249;      /* φόντο σελίδας */
+  --color-linen: 233 224 209;      /* μπεζ — επιφάνειες, hover, badges */
+  --color-linen-deep: 216 203 180; /* μπεζ σκούρο — borders, accents */
+  --color-ink: 20 19 17;        /* κείμενο, κουμπιά */
+  --color-ink-soft: 85 82 75;   /* δευτερεύον κείμενο */
+  --color-danger: 160 53 24;     /* σφάλματα, "τελευταία τεμάχια" */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink antialiased;
+  }
+
+  ::selection {
+    @apply bg-linen text-ink;
+  }
+
+  /* Ορατό focus για πλοήγηση με πληκτρολόγιο */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ink ring-offset-2 ring-offset-paper;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Βασικό κουμπί — μαύρο, γεμάτο */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-ink px-6 py-3
+      text-sm font-semibold uppercase tracking-widest text-paper
+      transition-colors hover:bg-ink-soft disabled:cursor-not-allowed
+      disabled:bg-linen-deep disabled:text-ink-soft;
+  }
+
+  /* Δευτερεύον κουμπί — περίγραμμα */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-ink
+      px-6 py-3 text-sm font-semibold uppercase tracking-widest text-ink
+      transition-colors hover:bg-linen disabled:cursor-not-allowed
+      disabled:border-linen-deep disabled:text-ink-soft;
+  }
+
+  /* Λεπτή μπεζ διαχωριστική γραμμή — υπογραφή του brand */
+  .rule-linen {
+    @apply border-t border-linen-deep;
+  }
+}
+
+/* ============================================================
+   Νομικές σελίδες — τυπογραφία κειμένου
+   ============================================================ */
+@layer components {
+  .prose-legal h1 {
+    @apply font-display text-3xl font-extrabold tracking-tight;
+  }
+  .prose-legal h2 {
+    @apply mt-8 font-display text-xl font-bold;
+  }
+  .prose-legal p,
+  .prose-legal li {
+    @apply mt-3 text-sm leading-relaxed text-ink-soft;
+  }
+  .prose-legal ul {
+    @apply mt-2 list-disc space-y-1 pl-5;
+  }
+  .prose-legal .lead {
+    @apply mt-4 text-base text-ink;
+  }
+  .prose-legal .placeholder {
+    @apply mt-4 border-l-2 border-linen-deep bg-linen/40 px-4 py-3 text-sm italic text-ink-soft;
+  }
+  .prose-legal a {
+    @apply text-ink underline underline-offset-2;
+  }
+}
