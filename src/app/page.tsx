@@ -18,7 +18,7 @@ export default function Home() {
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-soft">
           Ελληνικό streetwear
         </p>
-        <h1 className="mt-4 max-w-4xl font-display text-6xl font-bold leading-[0.95] tracking-tight sm:text-8xl">
+        <h1 className="mt-4 max-w-4xl break-words font-display text-[13vw] font-bold leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
           ΤΡΑΝΤΙΣΙΟΝΑΛ
         </h1>
         <p className="mt-6 max-w-lg text-lg text-ink-soft">
@@ -77,33 +77,44 @@ export default function Home() {
         </ul>
       </section>
 
-      {/* Concept strip — γιατί υπάρχουμε */}
-      <section className="mx-auto w-full max-w-site px-4 py-14 sm:px-6">
-        <div className="border-t border-linen-deep pt-10">
-          <div className="grid gap-8 sm:grid-cols-3">
-            <div>
-              <p className="font-display text-xl font-bold">Νοσταλγία που φοριέται</p>
-              <p className="mt-2 text-sm text-ink-soft">
-                Λέξεις από τα '90s και τα 2000s, με μια ματιά χιούμορ που τις
-                φέρνει στο σήμερα.
-              </p>
-            </div>
-            <div>
-              <p className="font-display text-xl font-bold">Τυπωμένο στην Ελλάδα</p>
-              <p className="mt-2 text-sm text-ink-soft">
-                Καθαρές στάμπες, τίμια υφάσματα. Ρούχα που αντέχουν στο πλυντήριο
-                και στα σχόλια.
-              </p>
-            </div>
-            <div>
-              <p className="font-display text-xl font-bold">Και για τους μικρούς</p>
-              <p className="mt-2 text-sm text-ink-soft">
-                Παιδικά φορμάκια — και ειδικά σετ για δίδυμα, που κλέβουν την
-                παράσταση.
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Συλλογές μέσω λέξεων */}
+      <section
+        aria-labelledby="collections-heading"
+        className="mx-auto w-full max-w-site px-4 py-14 sm:px-6"
+      >
+        <h2
+          id="collections-heading"
+          className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-soft"
+        >
+          Συλλογές
+        </h2>
+        <ul className="mt-8 grid gap-4 sm:grid-cols-3">
+          {[
+            { slug: 'gia-ekeinon', title: 'Για εκείνον', tagline: 'Λέξεις με λεβεντιά' },
+            { slug: 'gia-ekeini', title: 'Για εκείνη', tagline: 'Λέξεις με τσαγανό' },
+            { slug: 'gia-tous-mikrous', title: 'Για τους μικρούς', tagline: 'Μικρά μεγέθη, μεγάλο χιούμορ' },
+          ].map((c) => (
+            <li key={c.slug}>
+              <Link
+                href={`/collections/${c.slug}`}
+                className="group flex h-full flex-col justify-between border border-linen-deep p-6 transition-colors hover:bg-linen"
+              >
+                <span className="text-[11px] uppercase tracking-widest text-ink-soft">
+                  {c.tagline}
+                </span>
+                <span className="mt-8 font-display text-2xl font-bold tracking-tight">
+                  {c.title}
+                  <span
+                    aria-hidden="true"
+                    className="ml-1.5 inline-block transition-transform group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Newsletter */}

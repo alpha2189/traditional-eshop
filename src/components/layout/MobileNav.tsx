@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function MobileNav({
   items,
@@ -9,6 +9,18 @@ export function MobileNav({
   items: { href: string; label: string }[];
 }) {
   const [open, setOpen] = useState(false);
+
+  // ESC κλείνει· κλείδωμα scroll όσο είναι ανοιχτό.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [open]);
 
   return (
     <div className="lg:hidden">
@@ -30,25 +42,34 @@ export function MobileNav({
       </button>
 
       {open && (
-        <nav
-          id="mobile-menu"
-          aria-label="Κατηγορίες"
-          className="absolute inset-x-0 top-16 border-b border-linen-deep bg-paper"
-        >
-          <ul className="mx-auto max-w-site px-4 py-2 sm:px-6">
-            {items.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block py-3 text-sm font-medium hover:bg-linen"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <>
+          {/* Backdrop — κλείνει με κλικ έξω, καλύπτει το hero από κάτω */}
+          <button
+            type="button"
+            aria-label="Κλείσιμο μενού"
+            onClick={() => setOpen(false)}
+            className="fixed inset-0 top-16 z-40 bg-ink/30"
+          />
+          <nav
+            id="mobile-menu"
+            aria-label="Κατηγορίες"
+            className="absolute inset-x-0 top-16 z-50 border-b border-linen-deep bg-paper shadow-lg"
+          >
+            <ul className="mx-auto max-w-site px-4 py-2 sm:px-6">
+              {items.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="block border-b border-linen py-3.5 text-base font-medium last:border-0 hover:bg-linen"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </>
       )}
     </div>
   );

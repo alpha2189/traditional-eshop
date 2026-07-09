@@ -70,7 +70,7 @@ export function DictionaryHero() {
           fading ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <p className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+        <p className="font-display text-[8vw] font-bold leading-tight tracking-tight sm:text-4xl">
           {entry.word}
           <span className="ml-3 align-middle font-body text-sm font-normal italic text-ink-soft">
             {entry.pos}

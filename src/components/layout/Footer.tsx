@@ -3,7 +3,7 @@ import Link from 'next/link';
 export function Footer() {
   return (
     <footer className="rule-linen mt-auto">
-      <div className="mx-auto grid w-full max-w-site gap-10 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-4">
+      <div className="mx-auto grid w-full max-w-site gap-10 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-5">
         <div>
           <p className="font-display text-lg font-extrabold">ΤΡΑΝΤΙΣΙΟΝΑΛ</p>
           <p className="mt-2 text-sm text-ink-soft">
@@ -23,6 +23,17 @@ export function Footer() {
             <li><Link href="/shop/hats" className="hover:text-ink">Καπέλα</Link></li>
             <li><Link href="/shop/socks" className="hover:text-ink">Κάλτσες</Link></li>
             <li><Link href="/shop/kids" className="hover:text-ink">Παιδικά</Link></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Συλλογές">
+          <p className="text-xs font-semibold uppercase tracking-widest">
+            Συλλογές
+          </p>
+          <ul className="mt-3 space-y-2 text-sm text-ink-soft">
+            <li><Link href="/collections/gia-ekeinon" className="hover:text-ink">Για εκείνον</Link></li>
+            <li><Link href="/collections/gia-ekeini" className="hover:text-ink">Για εκείνη</Link></li>
+            <li><Link href="/collections/gia-tous-mikrous" className="hover:text-ink">Για τους μικρούς</Link></li>
           </ul>
         </nav>
 
