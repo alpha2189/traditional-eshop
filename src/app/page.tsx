@@ -18,7 +18,7 @@ export default function Home() {
         <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-soft">
           Ελληνικό streetwear
         </p>
-        <h1 className="mt-4 max-w-4xl break-words font-display text-[13vw] font-bold leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
+        <h1 className="mt-4 max-w-4xl font-display text-[9vw] font-bold leading-[1] tracking-tight sm:text-7xl lg:text-8xl">
           ΤΡΑΝΤΙΣΙΟΝΑΛ
         </h1>
         <p className="mt-6 max-w-lg text-lg text-ink-soft">

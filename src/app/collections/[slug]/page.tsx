@@ -36,7 +36,7 @@ export default function CollectionPage({
       <p className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-soft">
         Συλλογή
       </p>
-      <h1 className="mt-3 font-display text-[11vw] font-bold leading-[0.95] tracking-tight sm:text-6xl">
+      <h1 className="mt-3 font-display text-[10vw] font-bold leading-[1] tracking-tight sm:text-6xl">
         {col.title}
       </h1>
       <p className="mt-4 max-w-xl text-lg text-ink-soft">{col.intro}</p>
@@ -46,7 +46,7 @@ export default function CollectionPage({
         <ul className="divide-y divide-linen">
           {col.words.map((w) => (
             <li key={w.word} className="py-6">
-              <p className="font-display text-[7vw] font-bold leading-tight tracking-tight sm:text-3xl">
+              <p className="font-display text-[6vw] font-bold leading-tight tracking-tight sm:text-3xl">
                 {w.word}
                 <span className="ml-3 align-middle font-body text-sm font-normal italic text-ink-soft">
                   {w.pos}
