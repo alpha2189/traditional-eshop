@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
-import { Commissioner, Inter } from 'next/font/google';
+import { Cardo, Inter } from 'next/font/google';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CartDrawer } from '@/components/cart/CartDrawer';
 import { CookieConsent } from '@/components/layout/CookieConsent';
 
-const display = Commissioner({
+const display = Cardo({
   subsets: ['latin', 'greek'],
-  weight: ['600', '700', '800'],
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
   variable: '--font-display',
 });
 

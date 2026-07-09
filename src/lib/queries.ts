@@ -27,6 +27,34 @@ export async function getCategoryBySlug(
   return data;
 }
 
+/** Υποκατηγορίες μιας γονικής κατηγορίας (π.χ. Δίδυμα κάτω από Παιδικά). */
+export async function getChildCategories(
+  parentId: string,
+): Promise<Category[]> {
+  const supabase = createClient();
+  const { data } = await supabase
+    .from('categories')
+    .select('*')
+    .eq('parent_id', parentId)
+    .order('position');
+  return data ?? [];
+}
+
+/** Ενεργά προϊόντα σε πολλές κατηγορίες (γονική + υποκατηγορίες μαζί). */
+export async function getActiveProductsInCategories(
+  categoryIds: string[],
+): Promise<ProductWithRelations[]> {
+  if (categoryIds.length === 0) return [];
+  const supabase = createClient();
+  const { data } = await supabase
+    .from('products')
+    .select(PRODUCT_SELECT)
+    .eq('status', 'active')
+    .in('category_id', categoryIds)
+    .order('created_at', { ascending: false });
+  return (data as unknown as ProductWithRelations[]) ?? [];
+}
+
 export async function getActiveProducts(
   categoryId?: string,
 ): Promise<ProductWithRelations[]> {

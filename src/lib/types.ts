@@ -8,6 +8,7 @@ export interface Category {
   name: string;
   slug: string;
   position: number;
+  parent_id: string | null;
 }
 
 export interface Product {

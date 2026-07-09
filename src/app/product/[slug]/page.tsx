@@ -102,10 +102,10 @@ export default async function ProductPage({ params }: Props) {
 
           {product.description && (
             <div className="rule-linen mt-10 pt-8">
-              <h2 className="text-xs font-semibold uppercase tracking-widest">
-                Περιγραφή
+              <h2 className="text-xs font-semibold uppercase tracking-widest text-ink-soft">
+                Ορισμός
               </h2>
-              <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-ink-soft">
+              <p className="mt-3 font-display text-lg italic leading-relaxed">
                 {product.description}
               </p>
             </div>

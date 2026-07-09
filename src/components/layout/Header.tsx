@@ -9,6 +9,7 @@ const NAV = [
   { href: '/shop/hoodies', label: 'Φούτερ' },
   { href: '/shop/hats', label: 'Καπέλα' },
   { href: '/shop/socks', label: 'Κάλτσες' },
+  { href: '/shop/kids', label: 'Παιδικά' },
 ];
 
 export function Header() {

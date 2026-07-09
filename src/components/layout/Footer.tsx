@@ -22,6 +22,7 @@ export function Footer() {
             <li><Link href="/shop/hoodies" className="hover:text-ink">Φούτερ</Link></li>
             <li><Link href="/shop/hats" className="hover:text-ink">Καπέλα</Link></li>
             <li><Link href="/shop/socks" className="hover:text-ink">Κάλτσες</Link></li>
+            <li><Link href="/shop/kids" className="hover:text-ink">Παιδικά</Link></li>
           </ul>
         </nav>
 
