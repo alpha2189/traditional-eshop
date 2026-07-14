@@ -2,14 +2,6 @@ import Link from 'next/link';
 import { NewsletterForm } from '@/components/layout/NewsletterForm';
 import { DictionaryHero } from '@/components/layout/DictionaryHero';
 
-const CATEGORIES = [
-  { slug: 't-shirts', name: 'T-Shirts', tagline: 'Το βασικό, σωστά' },
-  { slug: 'hoodies', name: 'Φούτερ', tagline: 'Βαρύ βαμβάκι' },
-  { slug: 'hats', name: 'Καπέλα', tagline: 'Χαμηλό προφίλ' },
-  { slug: 'socks', name: 'Κάλτσες', tagline: 'Η λεπτομέρεια μετράει' },
-  { slug: 'kids', name: 'Παιδικά', tagline: 'Μικρά μεγέθη, μεγάλο χιούμορ' },
-];
-
 export default function Home() {
   return (
     <main id="main" className="flex-1">
@@ -31,50 +23,13 @@ export default function Home() {
         </div>
 
         <div className="mt-10 flex flex-wrap gap-3">
-          <Link href="/shop" className="btn-primary">
-            Δες τη συλλογή
+          <Link href="/shop/t-shirts" className="btn-primary">
+            Δες τα T-Shirts
           </Link>
-          <Link href="/shop/kids" className="btn-secondary">
-            Παιδικά &amp; Δίδυμα
+          <Link href="/custom" className="btn-secondary">
+            Φτιάξε το δικό σου
           </Link>
         </div>
-      </section>
-
-      {/* Κατηγορίες */}
-      <section
-        aria-labelledby="categories-heading"
-        className="mx-auto w-full max-w-site px-4 py-14 sm:px-6"
-      >
-        <h2
-          id="categories-heading"
-          className="text-xs font-semibold uppercase tracking-[0.3em] text-ink-soft"
-        >
-          Κατηγορίες
-        </h2>
-        <ul className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-          {CATEGORIES.map((cat) => (
-            <li key={cat.slug}>
-              <Link
-                href={`/shop/${cat.slug}`}
-                className="group flex aspect-square flex-col justify-between
-                  bg-linen p-5 transition-colors hover:bg-linen-deep"
-              >
-                <span className="text-[11px] uppercase tracking-widest text-ink-soft">
-                  {cat.tagline}
-                </span>
-                <span className="font-display text-2xl font-bold tracking-tight">
-                  {cat.name}
-                  <span
-                    aria-hidden="true"
-                    className="ml-1.5 inline-block transition-transform group-hover:translate-x-1"
-                  >
-                    →
-                  </span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </section>
 
       {/* Συλλογές μέσω λέξεων */}

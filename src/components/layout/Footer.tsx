@@ -19,10 +19,6 @@ export function Footer() {
           </p>
           <ul className="mt-3 space-y-2 text-sm text-ink-soft">
             <li><Link href="/shop/t-shirts" className="hover:text-ink">T-Shirts</Link></li>
-            <li><Link href="/shop/hoodies" className="hover:text-ink">Φούτερ</Link></li>
-            <li><Link href="/shop/hats" className="hover:text-ink">Καπέλα</Link></li>
-            <li><Link href="/shop/socks" className="hover:text-ink">Κάλτσες</Link></li>
-            <li><Link href="/shop/kids" className="hover:text-ink">Παιδικά</Link></li>
             <li><Link href="/custom" className="hover:text-ink">Φτιάξε το δικό σου</Link></li>
           </ul>
         </nav>

@@ -4,12 +4,7 @@ import { CartButton } from './CartButton';
 import { MobileNav } from './MobileNav';
 
 const NAV = [
-  { href: '/shop', label: 'Όλα' },
   { href: '/shop/t-shirts', label: 'T-Shirts' },
-  { href: '/shop/hoodies', label: 'Φούτερ' },
-  { href: '/shop/hats', label: 'Καπέλα' },
-  { href: '/shop/socks', label: 'Κάλτσες' },
-  { href: '/shop/kids', label: 'Παιδικά' },
   { href: '/custom', label: 'Φτιάξε το δικό σου' },
 ];
 

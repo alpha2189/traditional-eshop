@@ -94,9 +94,13 @@ export default function CustomPage() {
               }`}
             >
               <span
-                className={`font-display text-2xl font-bold leading-tight tracking-tight sm:text-3xl ${
-                  isDark ? 'text-paper' : 'text-ink'
-                }`}
+                className={`font-display font-bold leading-tight tracking-tight ${
+                  clean.length > 28
+                    ? 'text-lg sm:text-xl'
+                    : clean.length > 14
+                      ? 'text-xl sm:text-2xl'
+                      : 'text-2xl sm:text-3xl'
+                } ${isDark ? 'text-paper' : 'text-ink'}`}
               >
                 {clean || 'Η ΛΕΞΗ ΣΟΥ'}
               </span>
@@ -174,8 +178,8 @@ export default function CustomPage() {
               className="mt-2 w-full border border-linen-deep bg-paper px-3 py-2.5 text-sm focus:border-ink"
             />
             <p className="mt-1 text-xs text-ink-soft">
-              {clean.length}/{MAX_CUSTOM_LEN} χαρακτήρες · κεφαλαία, ελληνικά ή
-              λατινικά
+              {clean.length}/{MAX_CUSTOM_LEN} χαρακτήρες · κεφαλαία ή μικρά,
+              ελληνικά ή λατινικά
             </p>
           </div>
 

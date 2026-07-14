@@ -34,18 +34,19 @@ export const CUSTOM_GARMENTS: CustomGarment[] = [
   },
 ];
 
-export const MAX_CUSTOM_LEN = 24;
+export const MAX_CUSTOM_LEN = 52;
 
 export function getCustomGarment(key: string): CustomGarment | undefined {
   return CUSTOM_GARMENTS.find((g) => g.key === key);
 }
 
-/** Καθαρισμός κειμένου πελάτη: επιτρέπονται ελληνικά/λατινικά/αριθμοί/κενά
- *  και λίγα σημεία στίξης. Κόβει στο μέγιστο μήκος. */
+/** Καθαρισμός κειμένου πελάτη: επιτρέπονται ελληνικά/λατινικά (κεφαλαία ΚΑΙ
+ *  μικρά), αριθμοί, κενά και λίγα σημεία στίξης. Διατηρεί πεζά/κεφαλαία όπως
+ *  τα έγραψε ο πελάτης. Κόβει στο μέγιστο μήκος. */
 export function sanitizeCustomText(input: string): string {
   return input
-    .toUpperCase()
-    .replace(/[^Α-Ωα-ωΆ-ώA-Z0-9 .,!'&-]/g, '')
-    .trim()
+    .replace(/[^Α-Ωα-ωΆ-ώA-Za-z0-9 .,!'&-]/g, '')
+    .replace(/\s+/g, ' ')
+    .trimStart()
     .slice(0, MAX_CUSTOM_LEN);
 }
