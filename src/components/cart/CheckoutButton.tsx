@@ -19,6 +19,16 @@ export function CheckoutButton() {
           lines: lines.map((l) => ({
             variantId: l.variantId,
             quantity: l.quantity,
+            ...(l.custom
+              ? {
+                  custom: {
+                    garmentKey: l.custom.garmentKey,
+                    color: l.color,
+                    size: l.size,
+                    text: l.custom.text,
+                  },
+                }
+              : {}),
           })),
         }),
       });

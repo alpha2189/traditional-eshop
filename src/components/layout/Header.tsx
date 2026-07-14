@@ -10,6 +10,7 @@ const NAV = [
   { href: '/shop/hats', label: 'Καπέλα' },
   { href: '/shop/socks', label: 'Κάλτσες' },
   { href: '/shop/kids', label: 'Παιδικά' },
+  { href: '/custom', label: 'Φτιάξε το δικό σου' },
 ];
 
 export function Header() {

@@ -93,6 +93,8 @@ export default function Home() {
             { slug: 'gia-ekeinon', title: 'Για εκείνον', tagline: 'Λέξεις με λεβεντιά' },
             { slug: 'gia-ekeini', title: 'Για εκείνη', tagline: 'Λέξεις με τσαγανό' },
             { slug: 'gia-tous-mikrous', title: 'Για τους μικρούς', tagline: 'Μικρά μεγέθη, μεγάλο χιούμορ' },
+            { slug: 'ekfraseis', title: 'Ιδιωματικές εκφράσεις', tagline: 'Φράσεις που λέγαμε' },
+            { slug: 'paroimies', title: 'Παροιμίες', tagline: 'Λαϊκή σοφία με χιούμορ' },
           ].map((c) => (
             <li key={c.slug}>
               <Link

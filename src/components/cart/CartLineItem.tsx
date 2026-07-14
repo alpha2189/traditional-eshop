@@ -55,6 +55,11 @@ export function CartLineItem({
             <p className="mt-0.5 text-xs text-ink-soft">
               {line.size} · {line.color}
             </p>
+            {line.custom && (
+              <p className="mt-0.5 text-xs italic text-ink-soft">
+                Στάμπα: «{line.custom.text}»
+              </p>
+            )}
           </div>
           <p className="shrink-0 text-sm font-semibold tabular-nums">
             {formatPrice(line.priceCents * line.quantity)}

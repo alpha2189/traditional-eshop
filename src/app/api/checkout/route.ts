@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { getStripe } from '@/lib/stripe';
 import { productImageUrl } from '@/lib/utils';
+import { getCustomGarment, sanitizeCustomText } from '@/lib/customConfig';
 
 export const dynamic = 'force-dynamic';
 
@@ -21,6 +22,13 @@ const SHIPPING_EU_CENTS = 990; // Υπόλοιπη ΕΕ: 9,90 €
 interface CheckoutLine {
   variantId: string;
   quantity: number;
+  // Custom προϊόν: τιμή/λεπτομέρειες υπολογίζονται server-side από το config
+  custom?: {
+    garmentKey: string;
+    color: string;
+    size: string;
+    text: string;
+  };
 }
 
 export async function POST(request: Request) {
@@ -31,16 +39,49 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Μη έγκυρο αίτημα.' }, { status: 400 });
   }
 
-  const lines = (body.lines ?? []).filter(
+  const allLines = (body.lines ?? []).filter(
     (l) =>
-      typeof l?.variantId === 'string' &&
-      Number.isInteger(l?.quantity) &&
-      l.quantity > 0 &&
-      l.quantity <= 50,
+      Number.isInteger(l?.quantity) && l.quantity > 0 && l.quantity <= 50,
   );
 
-  if (lines.length === 0 || lines.length > 30) {
+  if (allLines.length === 0 || allLines.length > 30) {
     return NextResponse.json({ error: 'Το καλάθι είναι άδειο.' }, { status: 400 });
+  }
+
+  const customLines = allLines.filter((l) => l.custom);
+  const lines = allLines.filter(
+    (l) => !l.custom && typeof l.variantId === 'string',
+  );
+
+  const lineItems = [];
+
+  // ---- Custom προϊόντα (τιμή από το server config, χωρίς DB variant) ----
+  for (const line of customLines) {
+    const c = line.custom!;
+    const garment = getCustomGarment(c.garmentKey);
+    const text = sanitizeCustomText(c.text ?? '');
+    if (!garment || !text) {
+      return NextResponse.json(
+        { error: 'Μη έγκυρο custom προϊόν. Ξαναφτιάξε το από την αρχή.' },
+        { status: 400 },
+      );
+    }
+    lineItems.push({
+      quantity: line.quantity,
+      price_data: {
+        currency: 'eur',
+        unit_amount: garment.priceCents, // τιμή ΑΠΟ ΤΟ CONFIG (server)
+        product_data: {
+          name: `${garment.label} (custom) — «${text}» — ${c.size} / ${c.color}`,
+          metadata: {
+            // variant_id κενό => το webhook δεν μειώνει stock (made to order)
+            product_name: `Custom ${garment.label}: «${text}»`,
+            size: c.size,
+            color: c.color,
+          },
+        },
+      },
+    });
   }
 
   // Φόρτωση variants από τη βάση (anon client + RLS: μόνο active προϊόντα)
@@ -61,7 +102,6 @@ export async function POST(request: Request) {
 
   const variantMap = new Map((variants ?? []).map((v) => [v.id, v]));
 
-  const lineItems = [];
   for (const line of lines) {
     const variant = variantMap.get(line.variantId);
     const product = Array.isArray(variant?.product)
@@ -108,6 +148,13 @@ export async function POST(request: Request) {
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
+  if (lineItems.length === 0) {
+    return NextResponse.json(
+      { error: 'Το καλάθι είναι άδειο.' },
+      { status: 400 },
+    );
+  }
 
   try {
     const session = await getStripe().checkout.sessions.create({

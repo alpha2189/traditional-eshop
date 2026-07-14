@@ -44,17 +44,26 @@ export default function CollectionPage({
       {/* Λήμματα λεξικού */}
       <section aria-label="Λέξεις" className="mt-12 border-t border-linen-deep">
         <ul className="divide-y divide-linen">
-          {col.words.map((w) => (
-            <li key={w.word} className="py-6">
-              <p className="font-display text-[6vw] font-bold leading-tight tracking-tight sm:text-3xl">
-                {w.word}
-                <span className="ml-3 align-middle font-body text-sm font-normal italic text-ink-soft">
-                  {w.pos}
-                </span>
-              </p>
-              <p className="mt-2 max-w-2xl text-ink-soft">— {w.definition}</p>
-            </li>
-          ))}
+          {col.words.map((w) => {
+            const long = w.word.length > 16;
+            return (
+              <li key={w.word} className="py-6">
+                <p
+                  className={
+                    long
+                      ? 'font-display text-[5vw] font-bold leading-snug tracking-tight sm:text-xl'
+                      : 'font-display text-[6vw] font-bold leading-tight tracking-tight sm:text-3xl'
+                  }
+                >
+                  {w.word}
+                  <span className="ml-2 align-middle font-body text-xs font-normal italic text-ink-soft sm:ml-3 sm:text-sm">
+                    {w.pos}
+                  </span>
+                </p>
+                <p className="mt-2 max-w-2xl text-ink-soft">— {w.definition}</p>
+              </li>
+            );
+          })}
         </ul>
       </section>
 

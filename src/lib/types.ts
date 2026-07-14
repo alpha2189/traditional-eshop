@@ -81,4 +81,9 @@ export interface CartLine {
   imagePath: string | null;
   quantity: number;
   maxStock: number;
+  // Για custom προϊόντα («φτιάξε το δικό σου»)
+  custom?: {
+    garmentKey: string;
+    text: string;
+  };
 }

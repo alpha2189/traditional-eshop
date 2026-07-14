@@ -23,6 +23,7 @@ export function Footer() {
             <li><Link href="/shop/hats" className="hover:text-ink">Καπέλα</Link></li>
             <li><Link href="/shop/socks" className="hover:text-ink">Κάλτσες</Link></li>
             <li><Link href="/shop/kids" className="hover:text-ink">Παιδικά</Link></li>
+            <li><Link href="/custom" className="hover:text-ink">Φτιάξε το δικό σου</Link></li>
           </ul>
         </nav>
 
@@ -34,6 +35,8 @@ export function Footer() {
             <li><Link href="/collections/gia-ekeinon" className="hover:text-ink">Για εκείνον</Link></li>
             <li><Link href="/collections/gia-ekeini" className="hover:text-ink">Για εκείνη</Link></li>
             <li><Link href="/collections/gia-tous-mikrous" className="hover:text-ink">Για τους μικρούς</Link></li>
+            <li><Link href="/collections/ekfraseis" className="hover:text-ink">Ιδιωματικές εκφράσεις</Link></li>
+            <li><Link href="/collections/paroimies" className="hover:text-ink">Παροιμίες</Link></li>
           </ul>
         </nav>
 
