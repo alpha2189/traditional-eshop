@@ -1,15 +1,17 @@
 import Link from 'next/link';
+import { Seal } from './Seal';
 
 export function Footer() {
   return (
     <footer className="rule-linen mt-auto">
       <div className="mx-auto grid w-full max-w-site gap-10 px-4 py-12 sm:grid-cols-2 sm:px-6 lg:grid-cols-5">
         <div>
-          <p className="font-display text-lg font-extrabold">ΤΡΑΝΤΙΣΙΟΝΑΛ</p>
+          <Seal size={72} className="text-ink" />
+          <p className="mt-4 font-display text-lg font-bold">ΤΡΑΝΤΙΣΙΟΝΑΛ</p>
           <p className="mt-2 text-sm text-ink-soft">
-            Streetwear με καθαρές γραμμές.
+            Παλιές λέξεις, καθαρές στάμπες.
             <br />
-            Σχεδιασμένο στην Ελλάδα.
+            Γνήσιο ελληνικό streetwear.
           </p>
         </div>
 
@@ -41,6 +43,7 @@ export function Footer() {
             Πληροφορίες
           </p>
           <ul className="mt-3 space-y-2 text-sm text-ink-soft">
+            <li><Link href="/lexiko" className="hover:text-ink">Το Λεξικό</Link></li>
             <li><Link href="/shipping-returns" className="hover:text-ink">Αποστολές &amp; Επιστροφές</Link></li>
             <li><Link href="/withdrawal" className="hover:text-ink">Δικαίωμα Υπαναχώρησης</Link></li>
             <li><Link href="/terms" className="hover:text-ink">Όροι Χρήσης</Link></li>

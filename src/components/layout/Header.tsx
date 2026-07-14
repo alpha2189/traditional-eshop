@@ -6,6 +6,7 @@ import { MobileNav } from './MobileNav';
 const NAV = [
   { href: '/shop/t-shirts', label: 'T-Shirts' },
   { href: '/custom', label: 'Φτιάξε το δικό σου' },
+  { href: '/lexiko', label: 'Το Λεξικό' },
 ];
 
 export function Header() {

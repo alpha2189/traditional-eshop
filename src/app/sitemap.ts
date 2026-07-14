@@ -8,6 +8,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticRoutes = [
     '', '/shop', '/shop/t-shirts', '/shop/hoodies', '/shop/hats', '/shop/socks',
+    '/lexiko', '/custom',
+    '/collections/gia-ekeinon', '/collections/gia-ekeini', '/collections/gia-tous-mikrous',
+    '/collections/ekfraseis', '/collections/paroimies',
     '/privacy', '/terms', '/shipping-returns', '/withdrawal',
   ].map((path) => ({
     url: `${base}${path}`,

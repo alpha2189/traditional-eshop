@@ -94,3 +94,32 @@
     @apply text-ink underline underline-offset-2;
   }
 }
+
+/* ============================================================
+   Premium polish — λεπτομέρειες craft
+   ============================================================ */
+@layer components {
+  /* Eyebrow label με σήμα — συνεπές σε όλο το site */
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.3em] text-ink-soft;
+  }
+
+  /* Λεπτή διακοσμητική «κορνίζα» για premium πλαίσια */
+  .frame {
+    @apply border border-linen-deep;
+  }
+
+  /* Κουμπιά — πιο προσεγμένα, με διακριτικό βάθος στο hover */
+  .btn-primary {
+    @apply transition-all duration-200 hover:-translate-y-px hover:shadow-[0_6px_20px_-8px_rgba(20,19,17,0.5)];
+  }
+  .btn-secondary {
+    @apply transition-all duration-200;
+  }
+
+  /* Ρετρό «γραμμή λεξικού»: παύλα πριν το κείμενο */
+  .lex-dash::before {
+    content: '—';
+    @apply mr-2 text-ink-soft;
+  }
+}
